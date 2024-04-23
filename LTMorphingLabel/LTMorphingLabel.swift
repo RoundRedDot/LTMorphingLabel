@@ -301,11 +301,17 @@ extension LTMorphingLabel {
 
         for char in textToDraw {
             let charSize = String(char).size(withAttributes: [.font: font])
+            var offsetY = topOffset
+            if char == ":" {
+                offsetY += -4
+            } else {
+                offsetY = topOffset
+            }
             charRects.append(
                 CGRect(
                     origin: CGPoint(
                         x: leftOffset,
-                        y: topOffset
+                        y: offsetY
                     ),
                     size: charSize
                 )

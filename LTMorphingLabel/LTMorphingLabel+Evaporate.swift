@@ -43,9 +43,9 @@ extension LTMorphingLabel {
             char, index, progress in
             
             let newProgress = LTEasing.easeOutQuint(progress, 0.0, 1.0, 1.0)
-            let yOffset: CGFloat = -0.8 * CGFloat(self.font.pointSize) * CGFloat(newProgress)
+            let yOffset: CGFloat = -1.0 * CGFloat(self.font.pointSize) * CGFloat(newProgress)
             let currentRect = self.previousRects[index].offsetBy(dx: 0, dy: yOffset)
-            let currentAlpha = CGFloat(1.0 - newProgress)
+            let currentAlpha = 1.0 // CGFloat(1.0 - newProgress)
             
             return LTCharacterLimbo(
                 char: char,
@@ -64,7 +64,7 @@ extension LTMorphingLabel {
             return LTCharacterLimbo(
                 char: char,
                 rect: self.newRects[index].offsetBy(dx: 0, dy: yOffset),
-                alpha: CGFloat(self.morphingProgress),
+                alpha: 1.0,    // CGFloat(self.morphingProgress)
                 size: self.font.pointSize,
                 drawingProgress: 0.0
             )
