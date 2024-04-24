@@ -160,6 +160,14 @@ typealias LTMorphingSkipFramesClosure =
         }
     }
 
+    open var defaultText: String? {
+        didSet {
+            super.text = defaultText
+            previousText = defaultText ?? ""
+            diffResults = previousText.diffWith(defaultText)
+        }
+    }
+    
     open func start() {
         guard displayLink == nil else { return }
         displayLink = CADisplayLink(target: self, selector: #selector(displayFrameTick))
@@ -303,7 +311,7 @@ extension LTMorphingLabel {
             let charSize = String(char).size(withAttributes: [.font: font])
             var offsetY = topOffset
             if char == ":" {
-                offsetY += -4
+                offsetY += -(font.pointSize / 10)
             } else {
                 offsetY = topOffset
             }
